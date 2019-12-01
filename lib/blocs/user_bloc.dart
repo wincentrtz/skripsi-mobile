@@ -3,8 +3,8 @@ import 'package:belajar/repositories/user_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class UserBloc {
-  final _userFetcher = PublishSubject<List<User>>();
-  final _repository = UserRepository();
+  final BehaviorSubject _userFetcher = BehaviorSubject<List<User>>();
+  final UserRepository _repository = UserRepository();
 
   Observable<List<User>> get AllUser => _userFetcher.stream;
 
