@@ -1,3 +1,4 @@
+import 'package:belajar/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:belajar/blocs/user_bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +8,10 @@ class ContactList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: userBloc.AllUser,
-      builder: (context, snapshot) {
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        List<User> _users = snapshot.data;
         if (snapshot.hasData) {
-          return _buildList(snapshot);
+          return _buildList(_users);
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }
@@ -18,12 +20,12 @@ class ContactList extends StatelessWidget {
     );
   }
 
-  Widget _buildList(snapshot) {
+  Widget _buildList(List<User> _users) {
     return ListView.separated(
-      itemCount: snapshot.data.length,
+      itemCount: _users.length,
       itemBuilder: (BuildContext ctxt, int index) => ListTile(
-        title: Text(snapshot.data[index].name),
-        subtitle: Text(snapshot.data[index].email),
+        title: Text(_users[index].name),
+        subtitle: Text(_users[index].email),
       ),
       separatorBuilder: (context, index) => Divider(),
     );
