@@ -1,5 +1,6 @@
 import 'package:belajar/models/user.dart';
 import 'package:belajar/widgets/common/provider.dart';
+import 'package:belajar/widgets/common/stream_observer_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:belajar/blocs/user_bloc.dart';
 import 'package:flutter/material.dart';
@@ -8,17 +9,9 @@ class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserBloc _userBloc = Provider.of(context).fetch(UserBloc);
-    return StreamBuilder(
+    return StreamObserverBuilder<List<User>>(
       stream: _userBloc.AllUser,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        List<User> _users = snapshot.data;
-        if (snapshot.hasData) {
-          return _buildList(_users);
-        } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        return Center(child: CircularProgressIndicator());
-      },
+      onSuccess: (BuildContext context, List<User> data) => _buildList(data),
     );
   }
 
