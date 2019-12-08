@@ -4,7 +4,7 @@ class BlocManager {
   Map<dynamic, dynamic> manager = {};
 
   BlocManager() {
-    register(UserBloc, UserBloc());
+    register(UserBloc, userBloc);
   }
 
   register(name, object) {

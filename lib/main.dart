@@ -9,8 +9,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<BlocManager>(
-      data: BlocManager(),
+    return Provider(
+      bloc: BlocManager(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

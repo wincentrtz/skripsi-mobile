@@ -1,19 +1,16 @@
+import 'package:belajar/blocs/bloc_manager.dart';
+import 'package:belajar/blocs/user_bloc.dart';
 import 'package:flutter/cupertino.dart';
 
-class Provider<T> extends InheritedWidget {
-  final T data;
+class Provider extends InheritedWidget {
+  final BlocManager bloc;
 
-  Provider({Key key, Widget child, this.data}) : super(key: key, child: child);
+  Provider({Key key, Widget child, this.bloc}) : super(key: key, child: child);
 
-  static T of<T>(BuildContext context) {
-    final type = _typeOf<Provider<T>>();
-    return (context.inheritFromWidgetOfExactType(type) as Provider).data;
+  static BlocManager of(BuildContext context) {
+    return (context.inheritFromWidgetOfExactType(Provider) as Provider).bloc;
   }
-
-  static Type _typeOf<T>() => T;
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) {
-    return false;
-  }
+  bool updateShouldNotify(InheritedWidget oldWidget) => true;
 }
