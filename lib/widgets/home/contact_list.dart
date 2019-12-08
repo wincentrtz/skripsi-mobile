@@ -1,3 +1,4 @@
+import 'package:belajar/blocs/bloc_manager.dart';
 import 'package:belajar/models/user.dart';
 import 'package:belajar/widgets/common/provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,10 +8,10 @@ import 'package:flutter/material.dart';
 class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserBloc _userBloc = Provider.of(context);
+    UserBloc _userBloc = Provider.of<BlocManager>(context).fetch(UserBloc);
     return StreamBuilder(
       stream: _userBloc.AllUser,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
         List<User> _users = snapshot.data;
         if (snapshot.hasData) {
           return _buildList(_users);
