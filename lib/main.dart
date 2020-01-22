@@ -1,6 +1,5 @@
 import 'package:belajar/blocs/bloc_manager.dart';
-import 'package:belajar/blocs/user_bloc.dart';
-import 'package:belajar/screens/home.dart';
+import 'package:belajar/screens/ecg.dart';
 import 'package:belajar/widgets/common/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('Belajar'),
           ),
-          body: Home(),
+          body: Ecg(),
         ),
       ),
     );
